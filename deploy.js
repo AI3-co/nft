@@ -22,7 +22,7 @@ const deploy = async () => {
   try {
     const result = await new web3.eth.Contract(abi)
       .deploy({ data: evm.object, arguments: [] })
-      .send({ gas: '10000000', from: accounts[0], gasPrice: '1000000000' });
+      .send({ gas: '5000000', from: accounts[0], gasPrice: '20000000000' });
   } catch (error) {
     console.log(error);
     exit();
