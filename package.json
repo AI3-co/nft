@@ -20,6 +20,7 @@
   "dependencies": {
     "@truffle/hdwallet-provider": "^2.1.7",
     "assert": "^2.0.0",
+    "dotenv": "^16.0.3",
     "ethers": "^6.0.8",
     "fs-extra": "^11.1.0",
     "ganache-cli": "^6.12.2",
