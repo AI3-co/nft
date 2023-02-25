@@ -19,8 +19,9 @@ const deploy = async () => {
   console.log('balance of account', web3.utils.fromWei(balance, 'ether'));
   console.log('Attempting to deploy from account', accounts[0]);
 
+  let result;
   try {
-    const result = await new web3.eth.Contract(abi)
+    result = await new web3.eth.Contract(abi)
       .deploy({ data: evm.object, arguments: [] })
       .send({ gas: '5000000', from: accounts[0], gasPrice: '20000000000' });
   } catch (error) {
