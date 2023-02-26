@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/AI3-co/nft#readme",
   "dependencies": {
+    "@openzeppelin/contracts": "^4.8.1",
     "@truffle/hdwallet-provider": "^2.1.7",
     "assert": "^2.0.0",
     "dotenv": "^16.0.3",

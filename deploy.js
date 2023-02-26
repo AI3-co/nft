@@ -7,7 +7,7 @@ const { exit } = require('process');
 
 const provider = new HDWalletProvider(
   [process.env.PRIVATE_KEY],
-  process.env.INFURA_URL,
+  process.env.PROVIDER_URL,
 );
 
 const web3 = new Web3(provider);
@@ -22,7 +22,7 @@ const deploy = async () => {
   let result;
   try {
     result = await new web3.eth.Contract(abi)
-      .deploy({ data: evm.object, arguments: [] })
+      .deploy({ data: evm.bytecode.object, arguments: [] })
       .send({ gas: '5000000', from: accounts[0], gasPrice: '20000000000' });
   } catch (error) {
     console.log(error);

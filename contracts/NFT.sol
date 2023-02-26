@@ -2,8 +2,8 @@
 
 pragma solidity ^0.8.9;
 
-import "@openzeppelin/contracts/access/Ownable.sol";
-import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import "../node_modules/@openzeppelin/contracts/access/Ownable.sol";
+import "../node_modules/@openzeppelin/contracts/token/ERC721/ERC721.sol";
 
 contract NFT is ERC721, Ownable {
     using Strings for uint256;
@@ -13,6 +13,7 @@ contract NFT is ERC721, Ownable {
     // uint public price = 100000000000000000; // 0.1 ETH
     uint256 public price = 0;
     uint256 public constant MAX_MINT_PER_TX = 1;
+    bool locked = true;
 
     bool public isSaleActive;
     uint256 public totalSupply;
@@ -108,4 +109,14 @@ contract NFT is ERC721, Ownable {
     function _baseURI() internal view virtual override returns (string memory) {
         return baseUri;
     }
+
+    function setLocked(bool _locked) external onlyOwner {
+        locked = _locked;
+    }
+
+    function transferFrom(address from, address to, uint256 tokenId) public override {
+        require(!locked, "Transfers are currently locked.");
+        super.transferFrom(from, to, tokenId);
+    }
+
 }
